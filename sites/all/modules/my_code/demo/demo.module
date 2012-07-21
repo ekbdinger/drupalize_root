@@ -1,0 +1,43 @@
+<?php
+
+/*
+ * Implements hook_permission()
+ */
+function demo_permission() {
+	return array(
+		'administer demo module' => array(
+			'title' => t('Administer demo module'),
+			'description' => t('Perform administration tasks for the Demo module.'),
+		),
+	);
+}
+
+/*
+ * Implements hook_node_view()
+ */
+function demo_node_view($node, $view_mode, $langcode) {
+	if  ($node->type == 'article' && $view_mode == 'full') {
+	$node->content['demo_field'] = array(   
+		'#type' => 'markup',
+		'#markup' => '<p>' .t('This is only a demo.').'</p>',
+		'#weight' => -10,
+	);
+	$node->content['demo_list'] = array(
+		'#items' => array('green', 'blue', 'yellow', 'red'),
+		'#theme' => 'item_list',
+		'#weight' => -9,
+	);   
+	krumo($node);  // displays krumo block
+	}
+}
+
+/* was just thinking about how to use this to specify only to appear on full nodes. There is some sample code in the comments that seems like it would work:  http://api.drupal.org/api/drupal/modules!node!node.api.php/function/hook_node_view/7
+
+function modulename_node_view($node, $view_mode, $langcode) {
+  if ($node->type == 'node-type' && $view_mode == 'full') {
+    // Code here.
+}
+
+sweet, I added this on July 21, 2012 and it worked!
+
+*/
