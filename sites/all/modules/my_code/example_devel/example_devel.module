@@ -1,0 +1,16 @@
+<?php
+/**
+  * Implements hook_init().
+  *
+  *
+  * Runs on every page
+  */
+function example_devel_init() {   /* i need to change the name of this to my module name.  Sweet that fixed it */
+	global $user;
+	print_r($user);
+}
+
+
+/* this is just one I created for fun.  He demonstrated it on one of the early examples in the Drupalize.me development series
+
+*/
