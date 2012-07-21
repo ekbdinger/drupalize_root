@@ -1,0 +1,3 @@
+name = example devel
+description = test for drupalize.me video
+core = 7.x
